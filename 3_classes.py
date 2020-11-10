@@ -47,3 +47,5 @@ cube_B.color = [255,50,85]
 
 cube_A.print_infos()
 cube_B.print_infos()
+
+# comment
