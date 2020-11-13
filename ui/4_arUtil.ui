@@ -14,7 +14,9 @@
    <string>arUtil</string>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">background-color: rgb(197, 197, 197);
+border-top-color: rgb(0, 0, 127);
+gridline-color: rgb(0, 0, 127);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_2">
