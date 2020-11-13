@@ -45,3 +45,6 @@ def start():
     app.exec_()
 
 start()
+
+
+print ('hello')
