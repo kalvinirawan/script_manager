@@ -58,7 +58,7 @@ class ScriptManager():
 # OS start
 def launch():
     app = QtWidgets.QApplication(sys.argv)
-    classVar = AutoComp()
+    classVar = ScriptManager()
     app.exec_()
 
 launch()
