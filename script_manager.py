@@ -55,10 +55,14 @@ class ScriptManager():
 
 #===============================================================================
 # START
-# OS start
-def launch():
+def os_launch():
     app = QtWidgets.QApplication(sys.argv)
     classVar = ScriptManager()
     app.exec_()
 
-launch()
+
+def dcc_launch():
+    global main_widget
+    main_widget = ScriptManager()
+
+os_launch()
