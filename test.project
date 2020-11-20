@@ -1,0 +1,800 @@
+#Isotropix_Serial_Version 1.2
+
+#Isotropix_Clarisse_Version 4
+#Isotropix_Clarisse_Project_Version 0.94
+Context "scene" {
+    #created 1455809270
+    CameraPerspective {
+        name "camera"
+        #version 0.9
+        #created 1455809270
+        #modified 1605845308
+        translate 28 21 28
+        rotate -27.938 45 0.0
+        aim_distance 44.8218696620299
+        field_of_view 25
+    }
+    LightPhysicalDistant {
+        name "light"
+        #version 0.91
+        #created 1462886261
+        #modified 1605845308
+        rotate -35 125 0.0
+    }
+    RendererRaytracer {
+        name "path_tracer"
+        #version 1.1
+        #created 1462890443
+        #modified 1605845308
+        integration_model "IntegratorPathtracer"
+        integrator ".IntegratorPathtracer_embedded"
+        integrators ".IntegratorPathtracer_embedded" ".IntegratorLegacy_embedded" ".IntegratorAmbientOcclusion_embedded" ".IntegratorUtility_embedded"
+        embedded_objects {
+            IntegratorPathtracer {
+                name "IntegratorPathtracer_embedded"
+                #version 0.94
+                #created 1605845308
+                #modified 1605845308
+                cap_display no
+                embedded_objects {
+                    MaterialPhysicalStandard {
+                        name "surface_default"
+                        #version 0.95
+                        #created 1605845308
+                        #modified 1605845308
+                        private yes
+                    }
+                    MaterialPhysicalVolume {
+                        name "volume_default"
+                        #version 0.92
+                        #created 1605845308
+                        #modified 1605845308
+                        private yes
+                        density_multiplier 100
+                    }
+                    MaterialPhysicalHair {
+                        name "curve_default"
+                        #version 0.9
+                        #created 1605845308
+                        #modified 1605845308
+                        private yes
+                    }
+                }
+            }
+            IntegratorLegacy {
+                name "IntegratorLegacy_embedded"
+                #version 0.92
+                #created 1605845308
+                #modified 1605845308
+                cap_display no
+                embedded_objects {
+                    MaterialStandard {
+                        name "surface_default"
+                        #version 0.92
+                        #created 1605845308
+                        #modified 1605845308
+                        private yes
+                        specularity 1 1 1
+                    }
+                    MaterialVolume {
+                        name "volume_default"
+                        #version 0.9
+                        #created 1605845308
+                        #modified 1605845308
+                        private yes
+                        density_multiplier 100
+                    }
+                    MaterialMarschnerFur {
+                        name "curve_default"
+                        #version 0.9
+                        #created 1605845308
+                        #modified 1605845308
+                        private yes
+                    }
+                }
+            }
+            IntegratorAmbientOcclusion {
+                name "IntegratorAmbientOcclusion_embedded"
+                #version 0.92
+                #created 1605845308
+                #modified 1605845308
+                cap_display no
+            }
+            IntegratorUtility {
+                name "IntegratorUtility_embedded"
+                #version 0.92
+                #created 1605845308
+                #modified 1605845308
+                cap_display no
+            }
+        }
+    }
+    Image {
+        name "image"
+        #version 0.95
+        #created 1462886391
+        #modified 1605845308
+        active_layer 0
+        layers ".background"
+        first_frame 0
+        last_frame 50
+        embedded_objects {
+            Layer3d {
+                name "background"
+                #version 0.97
+                #created 1462886428
+                #modified 1605845308
+                first_frame 0
+                last_frame 50
+                deep_output_data_precision 0
+                max_sample_count 0
+                active_camera "camera"
+                renderer "path_tracer"
+                user_data {
+                    __context_objects__ {
+                    }
+                    __context_lights__ {
+                    }
+                }
+            }
+        }
+    }
+    GeometryPolygrid {
+        name "polygrid"
+        #version 0.9
+        #created 1605846453
+        #modified 1605846470
+        scale 24.4534664514912 24.4534664514912 24.4534664514912
+        uv_maps "parametric"
+        uv_maps_loaded yes
+        shading_groups "grid"
+        materials "project://default/material"
+        clip_maps ""
+        displacements ""
+        sg_shading_variables ""
+        visibles yes
+    }
+    GeometryPolysphere {
+        name "polysphere"
+        #version 0.9
+        #created 1605846467
+        #modified 1605846468
+        uv_maps "parametric"
+        uv_maps_loaded yes
+        shading_groups "surface"
+        materials "project://default/material"
+        clip_maps ""
+        displacements ""
+        sg_shading_variables ""
+        visibles yes
+    }
+    GeometryParticleContainer {
+        name "container"
+        #version 0.9
+        #created 1605846481
+        #modified 1605846516
+        resource 0 "AD9FA8ADFEBA5760D63283DB351883D7"
+        resource 3 ""
+        uv_maps "parametric"
+        uv_maps_loaded yes
+        shading_groups "points"
+        materials "project://default/material"
+        clip_maps ""
+        displacements ""
+        sg_shading_variables ""
+        visibles yes
+    }
+    SceneObjectScatterer {
+        name "scatterer"
+        #version 0.93
+        #created 1605846487
+        #modified 1605846505
+        geometry_support "container"
+        geometry "polysphere"
+        collision_object ""
+        probability 1
+    }
+}
+#resources {
+    resource "AD9FA8ADFEBA5760D63283DB351883D7" 0x010000002002000001395ED6C000000000987DA5BF59D0B3C0000000002D6F41C096EE8BC0000000004EEBEBBF6D3C9AC000000000A5FE48BF31F3C4C000000000C99FC8BF888EC5C00000000015A615C0F2FFA6C000000000EEEB7FBC4B6954C0000000009ED3DBBA873E8BC00000000022BBDDBFB943CDC000000000F5A687BF255280C000000000BACADE3F3DE89FC0000000007F0DB4BFA3AD96C0000000005C15A83F82DBB7C0000000007A5193BF570B87C000000000111CB23EF9F7D7C000000000458F49C0B6A5DEC000000000BD8FB5BF422C8FC000000000F95D3340A5A08FC0000000009F44C13E1B6684C00000000013FE8F3F812BF4C000000000E24C09C0536C86C0000000003ACFE23ECF436CC000000000499C0E40F88D8CC000000000BACD243F255F92C000000000A1C0063FCC8AB7C0000000004B552F3FD390A5C000000000B8DE0E40C2F0FBC0000000009F7601C06723E4C000000000B49CEDBF33E6D1C000000000E3640C3FB480CCC000000000CF55B0BE246D6FC000000000E152FD3F6D54A2C000000000449B0B40FC4DE8C000000000CAB9813F4290EEC0000000006ABAB83FB95AF7C00000000043BF913F765EC5C0000000007A850940DCF4AEC000000000EB20FF3F5C8197C00000000098DF5740DAF0A4C0000000007C59264094F28BC0000000001B0D62402165A8C000000000D2E4F13F1979CAC0000000004164993FEE2BB2C000000000FB73154082E5A3C0000000007BCC74405A2ABFC000000000E97CB83F4AF5DFC0000000003D02B73F567008C100000000D666F3BD049704C100000000F71305402773A3C000000000685F5E4002E6FBC000000000DC7E19404957ABC0000000006ABF6040F890BEC000000000C79015408987E6C000000000B9F10340A5E296C000000000D2FC8840ECFCD6C0000000005D4A1B4036B7E0C00000000034B61E406660F4C00000000039A0254039FCC7C000000000B7238740F9DBE9C00000000033AB344028CCDFC000000000F32C24407DBDCFC000000000CA705740E3E1C9C0000000005B445D40D437B0C00000000054F64E403F6556C000000000447DAC408C7097C000000000987CB740368486C0000000008A84B3403810ABC0000000009C5BB340A0874BC0000000004483C140692960C00000000075589A401D10AAC00000000021D79C402A0B99C0000000007EBC9140EC6DC1C000000000340094403BC974C000000000F45FB6403B0686C00000000063E49B40440F73C000000000EBC8A3402CD17AC000000000DB85CF40C1C1BDC0000000004DFB8140142E99C000000000408DA540DC98B6C00000000009BE7C4005B09CC0000000009F1B8440B6BB7AC00000000079509C40831353C00000000080B89B409B7806C0000000007843B440A832EFBF00000000D159AC40DF0211C0000000004EC29840032287C000000000AEB677402FE141C000000000DDB59240A9E45EC0000000000A378940CA24DFBF00000000F972C8400E190DC0000000003370AB40FA1D73C000000000E3649A40A90F25C000000000CD7BA44080B518C00000000076FABC405D5B6EC000000000FA909B40FE3708C0000000008EDCBA407F8E56C00000000068319340654219C00000000021C3914001E59EBF00000000E86ABE40EB168DBF000000003E25A4402FAD9ABF00000000F570C740DB26F1BF00000000C1EDC240A4635BBF00000000E95FA8403E858DBF00000000CA8CD44043522FC0000000009844A9409BA14CC000000000540E87407C482AC0000000003F076E40DD7564BF000000006FC9B840812CAFBF00000000D766C240475D8ABF00000000EDB9A1400CFEDDBF00000000D1AB8B4090DF59C000000000BD858040E45382BE0000000045349040445225BF0000000023BDB640CD04083F0000000003BBBD4074E9E0BF00000000C38CAA40405AA2BF000000003005B740B9268EBF00000000061E8640F1E547BF00000000282E904011683FBF00000000ECC1C34033615EBC0000000032D1D24001D9B4BF0000000068748F40506CB0BF0000000076C9B040A21853BE0000000096DAA740EC8BB2BE00000000C30C9A4000CA94BF00000000670192406ED22EBF000000002DEF79401A02463E000000001964C1407F4285BE000000002DBAA8409D0714BE00000000CFC6AA40B709533F000000002F249B404B5D8E3D00000000755A95407F4285BE000000002DBAA8407EFC56BF00000000EAEB75407EB05A3F000000005B74A040CC8DBC3E00000000826A8C408262E8BE000000003890B5406014853F00000000B8AA97407745E9BE00000000506A8440D856C9BE000000000E9670408BA59C3E0000000063C1B240448A963F000000007D53B340FBD0473E00000000F4CAB0408B5EE63E00000000C472BB4086E37B3F00000000EAAC92405940343F00000000F71C8B402030553F000000001F41AA40B53D793F000000008B28C1403930893F00000000169AAF4061E8393F00000000337A8240B83E9D3F00000000DF8B70400155653E00000000F4948A403A270A4000000000BE76C540E1229D3F000000007D0DB64071DE873F00000000144F7E4096C3843F0000000091D58D403A5FEC3F000000006781A840B33B133F000000007B4997404A061340000000007F63B9405549024000000000C7399E40C89E0940000000005417BA4083DE254000000000427FAA4049A60D4000000000DDB27140F0043A40000000004683B4402997354000000000D82EC740C624FF3F00000000EC37AD4011E5D53F0000000031EA72406A1D1F4000000000163384400584BE3F00000000BF0EA740C468114000000000BBA78740413B21400000000031F2A94064504D40000000000CA9A54089993B4000000000451DB440ECD3BC3F000000009CBD82401F551340000000007B419640A35B46400000000048E28E403057794000000000B5FE8A40BA24174000000000E4618040F3A549400000000091D98440316A29400000000045B66740F07E4A4000000000F137BD4069DE31400000000010AA97402C7B6E4000000000C6FDBE402C764F4000000000F562BA401203174000000000A4CC60406AE330400000000084578740FB11654000000000AD03A8408045394000000000E89AA540B71655400000000062D3834029333E4000000000C1B8B640A43B534000000000835E664029238240000000001012AD40C51C9C4000000000D6638C4076699A400000000007C8B4406EFD6F40000000000C167A40EDCC9240000000009A4A8A40F97E6A4000000000FC626240902A8D4000000000C43D9240FEC37840000000002AE09340F63B694000000000307D6E40C8C96B400000000036CB8140939475400000000032766440637F744000000000B2C4A540CFB66F40000000006B3F4040679F8C4000000000F737BD403254744000000000DE43934004B5834000000000632648401A138C400000000007658F403834B5400000000053249B404A35A74000000000F3F863400BAE824000000000D6027340E8F48C40000000006E514E40C60CA34000000000D80B56409F41A2400000000070F76840583685400000000074358A40C1978C400000000091B38B409142AA4000000000A7709240FB89B44000000000A978904075E2B640000000006C687A40DA9394400000000065425D40197CA34000000000AA048C40CECEB64000000000C6689D40AC6B8B40000000004E9AA3408D52A14000000000D82E454066CFD04000000000D8F270404D10B640000000006DFD5440A6B9CB40000000005E6C9A40A1C4D040000000007951904057AEAB400000000014E05B401A89BD40000000004F4FAD4049D5BD4000000000B55285409E34CE400000000016DD8940DDB6B74000000000485353405C1CBF4000000000BBAC4440119BC84000000000B2EF4C4022A8BB40000000009B37934035E0B1400000000020CD7140AC11AA4000000000B8589740189FD240000000008C657F40A0DCC2400000000062A64B40984FE8400000000042A47F4030F9E54000000000642990404046CB4000000000CF08A240B547D94000000000B9715E40FC7ACE400000000074AC6C40678FDE4000000000CEED7C408227E040000000003A8A2A40D4EFDF4000000000F5354A400D45DF4000000000CE2D6C40890CCF4000000000D0329D40E191C64000000000CD5744407704E24000000000E915864035CDEA40000000000DE376408556CE4000000000BC2747406230E240000000007D948A40A049C34000000000E9CF5540F708D840000000008809634000C6E44000000000A2A97640F6F9F44000000000622B494079F2DA4000000000EE100B404121034100000000D9C27F40BA72E4400000000030DB304024DEDE40000000000DCF5840A753E6400000000093187540E782F54000000000D1458B4002C7E44000000000D3BDFA3F1810FE4000000000B5F624406BD900410000000005978640521BEF4000000000E510844035C8F7400000000061CD9240D496F140000000000777F73FC8DCDF40000000008EC46140E8D3FC4000000000F9D5674005A90A4100000000AB553F40E998EB4000000000382F1440C4AF09410000000031AA47404AE4FF4000000000F6C63040C0A50641000000008FA566403158ED4000000000FA4339404244024100000000F7887E4021E2EA400000000024B81F40A88AFD40000000000B8E1E4073C2FD4000000000EAAE82404144064100000000366A6740687509410000000056EBFC3F5C13FF4000000000F342DC3F9D42FF40000000000BA94840B8E5FD400000000063BA014092140941000000003D95C33E43160D41000000005EF644BB214D05410000000002B4BE3EFAD3F24000000000A995D63EA36FF94000000000E0FF133F8A14FD4000000000B0AFA3BD3199074100000000F730F63FD1340741000000008CC2A63F57310B4100000000BBD811BC95740B4100000000EBB531BFE9DC0E410000000072E0033FDAF00741000000001841E23C22DFEF4000000000EC6E18BEAE08FF4000000000A88DF23FBC00F14000000000D529943F7EF20F41000000006880683F948EE2400000000076D718BC42E907410000000074B8CCBF0E93F540000000004C5949C08A07E74000000000D5F01EC0F31B0641000000003AB514C0E767EB4000000000901B2B3F431F01410000000028DD3FC0FA74014100000000201401C08DF9E04000000000B3D122BF98A9E14000000000F4D2A0BF6037F540000000003227A13E3DAA024100000000633D6ABF22D204410000000041FCACBF9F5DE140000000008F6A11BFDC81034100000000FD7406BDB717E14000000000DDF023C03343C340000000008AE54AC0F360C1400000000035AEB1BF905DE54000000000696D94BFA8D4C64000000000137A41BF0E64D64000000000EB1F80BF0862D740000000009410DEBF0ADFC74000000000A74DB4BF8CC2CC400000000083EC94BF5B6FE64000000000F7880E3E7E30F84000000000D4538FBECC53D74000000000A2979D3EE1BEBC4000000000D5B5DDBF8274F5400000000052EAE8BC1D73D44000000000FB4868C07849C34000000000604B33C04E38CA400000000098EB57C0905DA940000000002CFFA03EF082BA400000000067A874BFAE11A940000000001C2455C07879BD4000000000354E80BF97A4A340000000000FE3F03C1D91A64000000000CD6F4DBFEBB0D94000000000F27C4D3E85C0B8400000000067AB28C01DE6CA4000000000406CCFBFF7D5C54000000000D8ED503C8B39B040000000007D2456C07941C04000000000D4D202C0D7DFA840000000002D8161C07D6ABD4000000000A3083FC0AA5CA540000000008AB26AC0A044CD4000000000508D37C02700A3400000000088ADA23F8BA9AE40000000009CBFABBF142BA14000000000CA5FA63FCCAE914000000000AD156EBE429D8A400000000069E823C09650934000000000F13737BE249F9D4000000000995929BF2CE19340000000006F7B03C012A483400000000074ADFDBF4829A54000000000BACFFBBF36BEB040000000006BF5863F036BA64000000000C75E10C0B785B24000000000941F90BE55A5794000000000E22314BE4DDE854000000000A16C2BC01B9AA64000000000A9E6D1BFB17AB54062257B3F5AA297BE74B64E400000000072D509C102D21A4000000000A6C893C0930FA54046D9713F888445C07031A740D2156F3FD9B78FBE312E4F4000000000E9B813C13FE79B4020E8723F8D5ED93DE24E9E40D707773F276E93BCF12AB34037FD723F481C59BF254BCF3F00000000F5B614C14AAB53400000000061D5D7C04CDEB2402034723F33158EBFCF1EA23F000000004EE106C1BC1FF83F000000006D77C8C08EB7BA4010DF7C3F52AE28C07D102540000000004919B8C00D1A8E40C9C86F3F6EEDB33DB56E1E400000000028A02FC0E1928F40CCE03B3F4CFEED3EE73D8E409008773F56761BC0F17A2F3F0000000090CCA3C0F707154000000000F5433DC0F2B72A4000000000B7D188C0F595023F00000000F4A3CAC0273F8B4061E76E3F0A58DFBF519FEF3F00000000F2A867C0BEC627400000000090F0B8C07F575540C2BF493FE02750BD5C2697402C3D613F03BB7B3E58B893401040703F697507BF0142B63F00000000872B2DC0EC9EFB3F00000000A8C98AC0BEA56CBF000000002FF2A7C0FE89313F0000000051C94DC09FD7FA3F000000008D218FBFDFFF5B40FABBD73E7CE91A3F4A4C04BF000000003D4FC9C03F68CE3E00000000FD4AC2C0F4B9073F00000000AD4D47C0EC9128BF000000003021DAC06685064000000000EBB9D0BF0A3E633F00000000D6468BC0F1B481BF000000006D74BFC09497C93E000000007DCBAFC0ED2CE83F0000000099C16FC05B669F3F00000000C86EC4BF208F1A4000000000CD9F7CBFC1D42040000000007A9997BFCE06A4BD000000000D294FC0C1A0423E00000000250883C03558AF3F0000000010FE9B3F62D1EB3E000000004AAED2BF6B9E343F00000000409599BF6321AD3F00000000E6798D3F500A0040000000007D53893F5BB7953F0000000035EE68BF97F3F63E000000005AB15AC0F64253BF00000000589531C0CC3D2A3F5553D03E98701B3F47F4E93F00000000CEE7363D61CA503F8785ED3ED30A8B3E75199E3EA9EA903D3EAC6C3FC3AF9B3E0846E83DA1BD6A3F70018D3F00000000DA21413F6630DEBF000000001A5650C09B06003F0E2FA03DFEBA533FE5380040360F6F3FC3EB8040AB8F023E0000000071E5AD3F564E3B3F4EA6213FD3D7053E8DE527BF00000000438CDB3FD8DD483FD419AE3EDF7EF13E8E39BD3F16E67B3F584C8540F5F208C000000000C54913C0587C873E3367843DA83B6F3F525FA7BF00000000F6AB473EBD5770BF0000000043F737C035522E4061F6753FF41B5C406FA12440507E7B3FA2D383408028153F6A540E3FD5F80D3FBEFD393F3949173F7EC4953E111418BF00000000972DE73F188233C0000000000FD18F3F0B171EC098E0EE3E2AE0C03DDDE62FC0B490333F8994CC3E77DE4CBE7130453EA4016C3F38A59EBF000000002B61C63F1F6A24C0AEBBF33D287A193F4715D13F66DC783FAC687B401A9EB53F3570703F8AB89D4024DCC53FF8F8783FEE708640838D26C000000000B2DEEBBF608CB53F2A0E693F2C56914059492CC000000000486D993F658002BF1E29143F0F3A183F416BCCBF00000000970B55BFA81B09BE8F83793F681F8F40E190DC3F278DEE3FC3D79640D3FA0D40207AD93F536996401AD4ECBF1F90413FF6294D3F65550840780A9D3FECE9B04052EC13C0F828893F23A0993FF276743FDB9B9B3FB778B740717C07C0D434703FE0018D3F891E89BF6E52783F84B8A63F68E6583F1278D83FD37FA640D74C034017C2C63F97E5AA40EAC20340D54DDE3F889B92409836F5BF1612913FF53B313F23A7AF3FA6C5DC3F414BB040FB5A00409064C13FC0AEAE40093FA2BFD864833FC0E3813F42D2F33E4419D63FA1319A4092D4F03FACC7F33FD56F85408443FCBD820B8A3F8A4DAC3FBE1F13407DA4F63FD1F18240DB089D3FA4ABF63F8B6789408D819C3FCE4E9A3F2EB1693FCEBF4640BC2ACB3FB3B29540A608CD3FC288F03FD833A540A4382A40F2C7D73F3CFA9940B4D0FF3FB052DC3F042DA04012DC2E4080D1EE3FC3FE90402A2A9E3F60DD953F9A356F3F9EDB1B408096C23F83339D404B931040CBA0B03F6FF6A44012C9244058EED93FE8CF99401A72F23FD6D7E13F99E59440E43BA9BD43C3923F5E65A03FF62E23BF7EE2693F2FE4BBC0C7BB863F3BA16A3F54B343C07897EE3F692AF63F960D953FC43B6ABF1E446C3F501DD1C01D3ECE3FBB63FD3F643EAF3FE64542C000000000E413D4C0FE87DF3EAE436D3F873B9BC0A8DF093F6E7E6B3F7F892EC0F2BACD3F8FAF6C3FA769A0BF76322BC00000000093EE12C1E4EEDE3F768C743F77BA8ABF52A09A3F37FB7A3F55C4B8BFC6B00540199ECB3F24AA213F91E574BE63E25C3FA99D79C0D879DE3EDBFF7A3FD15255C088FECB3F460D6D3FEB338BBFD7D466C0000000003308D7C052C1E43F5DD4FA3FBF9D983FF7052B4083683340AEAB9A40228A76C0000000005DC2E0C04686D1BF7A25743FBCAD5DC09441AD3F10B60840EE03173F76B9683F9A1809405218633FECBD7F3EF414054045F39C3F69AF474026CE31401EE99240298E20401B363540CAFE8D407305D33F3D99FF3F5045063F2850CABF7180693FF4C138C0EA05F13DFA745E3F438634C092280840BEABC73F63DC493FDA09D1BFA8C0543F91800EC0719D2C40EC3431407A039E4023C03C401E7DDE3F3777A13F9EA57D4042134F4049DF9740A4D71B40039D2D409DE18C3FBC428040E8DE4240AB629C40D8151240DAEA2F40A5360E3FFBBC7B4048E546407ABFA040427307407CBD3640D1BD163FD91681403F8544401F6597406E5E41405ACCF73FBE94213F2D6D6540F95C6040D983A24070457F4014CE4B40274899408B7A3A40F03C064032D1753F663F6A4026F7654061CF9340E1C43340E58AB33F27EABC3F50242340DDC219408E60B23E99FB2D40AE5011406AB7C33F58030900
+}
+#preferences {
+    categories {
+        playblast {
+            frame_range 0
+            start 0
+            end 50
+            step 1
+            display_size 0
+            custom_size 720 486
+            display_HUD yes
+            shading_mode -1
+            render_wireframe_overlay no
+            enable_ambient_occlusion no
+            ambient_occlusion_sample_count 1
+            ambient_occlusion_distance -1
+            refinement_count -1
+            format "image"
+            encoding 5
+            filename "$CTEMP\\blast_#####"
+        }
+        rendering {
+            motion_blur_sample_count 3
+            motion_blur_direction 0
+            motion_blur_length 0.5
+            displacement_storage_mode 0
+            projection_master_eye 0
+        }
+        geometry {
+            subdivision_mode 1
+            visibility_mode 2
+        }
+        animation {
+            frames_per_second 24
+            start_frame 0.0
+            end_frame 50
+        }
+    }
+    selection {
+        selection_slots {
+            slot "Global" "project://scene/container"
+        }
+        slots_working_contexts {
+            slot "Global" "project://scene"
+        }
+    }
+    isolate {
+        Group {
+            name "isolate"
+            #version 0.93
+            #created 1605845305
+            #modified 1605845305
+            update_mode {
+                hidden yes
+            }
+            inclusion_rule {
+                hidden yes
+            }
+            inclusion_items {
+                hidden yes
+            }
+            exclusion_rule {
+                hidden yes
+            }
+            exclusion_items {
+                hidden yes
+            }
+        }
+    }
+    color_picker_custom_colors 1 0.0 0.0 0.649999976158142 0.0900000035762787 0.0900000035762787 0.439999997615814 0.119999997317791 0.119999997317791 0.300000011920929 0.109999999403954 0.109999999403954 1 1 1 1 0.850000023841858 0.0 0.660000026226044 0.569999992847443 0.0900000035762787 0.439999997615814 0.389999985694885 0.119999997317791 0.300000011920929 0.270000010728836 0.109999999403954 0.800000011920929 0.800000011920929 0.800000011920929 0.300000011920929 1 0.0 0.259999990463257 0.660000026226044 0.0900000035762787 0.219999998807907 0.439999997615814 0.119999997317791 0.170000001788139 0.300000011920929 0.109999999403954 0.639999985694885 0.639999985694885 0.639999985694885 0.0 1 0.560000002384186 0.0900000035762787 0.660000026226044 0.400000005960464 0.119999997317791 0.439999997615814 0.28999999165535 0.109999999403954 0.300000011920929 0.209999993443489 0.479999989271164 0.479999989271164 0.479999989271164 0.0 0.600000023841858 1 0.0900000035762787 0.430000007152557 0.660000026226044 0.119999997317791 0.310000002384186 0.439999997615814 0.119999997317791 0.219999998807907 0.300000011920929 0.319999992847443 0.319999992847443 0.319999992847443 0.25 0.0 1 0.239999994635582 0.0900000035762787 0.660000026226044 0.200000002980232 0.119999997317791 0.439999997615814 0.159999996423721 0.119999997317791 0.300000011920929 0.159999996423721 0.159999996423721 0.159999996423721 1 0.0 0.899999976158142 0.660000026226044 0.0900000035762787 0.600000023841858 0.439999997615814 0.119999997317791 0.400000005960464 0.300000011920929 0.119999997317791 0.280000001192093 0.0 0.0 0.0
+    foreground_color 0.0 0.0 0.0
+    background_color 1 1 1
+    current_time 0.0
+    active_tool "project://select"
+    ui {
+        window {
+            is_maximized yes
+            layout {
+                split_v {
+                    ratio 0.022
+                    views {
+                        tab {
+                            editor "WidgetTools"
+                            settings {
+                                viewport_widget {
+                                    selection_slot "Local"
+                                    use_global yes
+                                    local_selection {
+                                    }
+                                }
+                            }
+                            selection_locked no
+                        }
+                        selected_tab 0
+                        toolbar_minimized yes
+                    }
+                    view {
+                        editor "WidgetTools"
+                        settings {
+                            viewport_widget {
+                                selection_slot "Local"
+                                use_global yes
+                                local_selection {
+                                }
+                            }
+                        }
+                        toolbar_minimized yes
+                        selection_locked no
+                    }
+                    split_v {
+                        ratio 0.66154873164219
+                        split_h {
+                            ratio 0.946
+                            split_h {
+                                ratio 0.586261980830671
+                                views {
+                                    tab {
+                                        editor "Widget3dView"
+                                        settings {
+                                            viewport_widget {
+                                                selection_slot "Local"
+                                                use_global yes
+                                                local_selection {
+                                                }
+                                            }
+                                            refresh_mode "Fps Driven"
+                                            sampling_quality 0.1
+                                            refinement_count 0.0
+                                            shading_mode "Simple Shading (Smooth)"
+                                            ambient_occlusion no
+                                            ambient_occlusion_distance -1
+                                            wireframe no
+                                            fit_on_select no
+                                            display_filter "Context"
+                                            exposure 0.0
+                                            gamma 1
+                                            pickmask "Cameras Lights Locators Scene_Objects "
+                                            show_overlay yes
+                                            integration_model "IntegratorPathtracer"
+                                            integrator ".IntegratorPathtracer_embedded"
+                                            background_fit_mode 3
+                                            foreground_fit_mode 3
+                                            embedded_objects {
+                                                MaterialGlView {
+                                                    name "embedded_previz_material"
+                                                    #version 0.91
+                                                    #created 1605845309
+                                                    #modified 1605845310
+                                                    private yes
+                                                    use_flat_normal no no no
+                                                    light_color 0.400000035762787 0.400000035762787 0.400000035762787
+                                                    dark_color 0.0167320277541876 0.0167320277541876 0.0167320277541876
+                                                    zoom_factor 0.535898384862104
+                                                }
+                                                IntegratorPathtracer {
+                                                    name "IntegratorPathtracer_embedded"
+                                                    #version 0.94
+                                                    #created 1605845309
+                                                    #modified 1605845309
+                                                    cap_display no
+                                                    embedded_objects {
+                                                        MaterialPhysicalStandard {
+                                                            name "surface_default"
+                                                            #version 0.95
+                                                            #created 1605845309
+                                                            #modified 1605845309
+                                                            private yes
+                                                        }
+                                                        MaterialPhysicalVolume {
+                                                            name "volume_default"
+                                                            #version 0.92
+                                                            #created 1605845309
+                                                            #modified 1605845309
+                                                            private yes
+                                                            density_multiplier 100
+                                                        }
+                                                        MaterialPhysicalHair {
+                                                            name "curve_default"
+                                                            #version 0.9
+                                                            #created 1605845309
+                                                            #modified 1605845309
+                                                            private yes
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            lights 0
+                                            eye_dist 39.4337125029846
+                                            center -0.536631560993879 3.11821580580813 1.30903447607371
+                                            rotation -12.0956501271576 66.012787681073 0.0
+                                        }
+                                        selection_locked no
+                                        evaluation_mode yes
+                                    }
+                                    tab {
+                                        editor "WidgetImageView"
+                                        settings {
+                                            viewport_widget {
+                                                selection_slot "Local"
+                                                use_global yes
+                                                local_selection {
+                                                }
+                                            }
+                                            show_squares yes
+                                            show_progress yes
+                                            min_quality "1/16 Resolution"
+                                            visual_hint -1
+                                            aov_group "rgba"
+                                            zoom_and_pan 1 0.0 0.0
+                                            exposure 0.0
+                                            gamma 1
+                                            auto_eval yes
+                                            show_overlay yes
+                                        }
+                                        selection_locked no
+                                        evaluation_mode yes
+                                    }
+                                    tab {
+                                        editor "WidgetPropertyEditor"
+                                        settings {
+                                            viewport_widget {
+                                                selection_slot "Local"
+                                                use_global yes
+                                                local_selection {
+                                                }
+                                            }
+                                            show_path no
+                                            sort_type -1
+                                            sort_order 0
+                                            columns_width 16 250 120 60 60 60 60
+                                        }
+                                        selection_locked no
+                                    }
+                                    selected_tab 0
+                                    toolbar_minimized no
+                                }
+                                view {
+                                    editor "Widget3dView"
+                                    settings {
+                                        viewport_widget {
+                                            selection_slot "Local"
+                                            use_global yes
+                                            local_selection {
+                                            }
+                                        }
+                                        refresh_mode "Fps Driven"
+                                        sampling_quality 0.1
+                                        refinement_count 0.0
+                                        shading_mode "Simple Shading (Smooth)"
+                                        ambient_occlusion no
+                                        ambient_occlusion_distance -1
+                                        wireframe no
+                                        fit_on_select no
+                                        display_filter "Context"
+                                        exposure 0.0
+                                        gamma 1
+                                        pickmask "Cameras Lights Locators Scene_Objects "
+                                        show_overlay yes
+                                        integration_model "IntegratorPathtracer"
+                                        integrator ".IntegratorPathtracer_embedded"
+                                        background_fit_mode 3
+                                        foreground_fit_mode 3
+                                        embedded_objects {
+                                            MaterialGlView {
+                                                name "embedded_previz_material"
+                                                #version 0.91
+                                                #created 1605845309
+                                                #modified 1605845310
+                                                private yes
+                                                use_flat_normal no no no
+                                                light_color 0.400000035762787 0.400000035762787 0.400000035762787
+                                                dark_color 0.0167320277541876 0.0167320277541876 0.0167320277541876
+                                                zoom_factor 0.535898384862104
+                                            }
+                                            IntegratorPathtracer {
+                                                name "IntegratorPathtracer_embedded"
+                                                #version 0.94
+                                                #created 1605845309
+                                                #modified 1605845309
+                                                cap_display no
+                                                embedded_objects {
+                                                    MaterialPhysicalStandard {
+                                                        name "surface_default"
+                                                        #version 0.95
+                                                        #created 1605845309
+                                                        #modified 1605845309
+                                                        private yes
+                                                    }
+                                                    MaterialPhysicalVolume {
+                                                        name "volume_default"
+                                                        #version 0.92
+                                                        #created 1605845309
+                                                        #modified 1605845309
+                                                        private yes
+                                                        density_multiplier 100
+                                                    }
+                                                    MaterialPhysicalHair {
+                                                        name "curve_default"
+                                                        #version 0.9
+                                                        #created 1605845309
+                                                        #modified 1605845309
+                                                        private yes
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        lights 0
+                                        eye_dist 39.4337125029846
+                                        center -0.536631560993879 3.11821580580813 1.30903447607371
+                                        rotation -12.0956501271576 66.012787681073 0.0
+                                    }
+                                    toolbar_minimized no
+                                    selection_locked no
+                                }
+                                split_v {
+                                    ratio 0.69314381270903
+                                    views {
+                                        tab {
+                                            editor "WidgetBrowser"
+                                            settings {
+                                                viewport_widget {
+                                                    selection_slot "Local"
+                                                    use_global yes
+                                                    local_selection {
+                                                    }
+                                                }
+                                                rows_expand "project:/"
+                                                show_context_tree yes
+                                                view_mode 0
+                                                class_filter "Project Item"
+                                                width_context_tree 183
+                                                spreadsheet_sort_type -1
+                                                spreadsheet_sort_order 0
+                                                spreadsheet_column_type 0 4 3
+                                                spreadsheet_columns_width 240 170 150
+                                            }
+                                            selection_locked no
+                                        }
+                                        tab {
+                                            editor "WidgetHierarchyView"
+                                            settings {
+                                                viewport_widget {
+                                                    selection_slot "Local"
+                                                    use_global yes
+                                                    local_selection {
+                                                    }
+                                                }
+                                                show_mode no
+                                                tree_columns_type 3
+                                                tree_columns_width 150
+                                                rows_expand <empty>
+                                            }
+                                            selection_locked no
+                                        }
+                                        tab {
+                                            editor "WidgetExplorer"
+                                            settings {
+                                                viewport_widget {
+                                                    selection_slot "Local"
+                                                    use_global yes
+                                                    local_selection {
+                                                    }
+                                                }
+                                                tree_columns_type 3
+                                                tree_columns_width 150
+                                                rows_expand "project:/" "project://scene"
+                                                display_only_localized_button no
+                                                display_only_overridden_attrs no
+                                            }
+                                            selection_locked no
+                                        }
+                                        tab {
+                                            editor "WidgetSearch"
+                                            settings {
+                                                viewport_widget {
+                                                    selection_slot "Local"
+                                                    use_global yes
+                                                    local_selection {
+                                                    }
+                                                }
+                                                text ""
+                                                spreadsheet_sort_type -1
+                                                spreadsheet_sort_order 0
+                                                spreadsheet_columns_width 240 150 170 115 115 270 270
+                                            }
+                                            selection_locked no
+                                        }
+                                        selected_tab 0
+                                        toolbar_minimized no
+                                    }
+                                    view {
+                                        editor "WidgetBrowser"
+                                        settings {
+                                            viewport_widget {
+                                                selection_slot "Local"
+                                                use_global yes
+                                                local_selection {
+                                                }
+                                            }
+                                            rows_expand "project:/"
+                                            show_context_tree yes
+                                            view_mode 0
+                                            class_filter "Project Item"
+                                            width_context_tree 183
+                                            spreadsheet_sort_type -1
+                                            spreadsheet_sort_order 0
+                                            spreadsheet_column_type 0 4 3
+                                            spreadsheet_columns_width 240 170 150
+                                        }
+                                        toolbar_minimized no
+                                        selection_locked no
+                                    }
+                                    views {
+                                        tab {
+                                            editor "WidgetImageGallery"
+                                            settings {
+                                                viewport_widget {
+                                                    selection_slot "Local"
+                                                    use_global yes
+                                                    local_selection {
+                                                    }
+                                                }
+                                                force_refresh no
+                                                show_mode yes
+                                            }
+                                            selection_locked no
+                                        }
+                                        selected_tab 0
+                                        toolbar_minimized no
+                                    }
+                                    view {
+                                        editor "WidgetImageGallery"
+                                        settings {
+                                            viewport_widget {
+                                                selection_slot "Local"
+                                                use_global yes
+                                                local_selection {
+                                                }
+                                            }
+                                            force_refresh no
+                                            show_mode yes
+                                        }
+                                        toolbar_minimized no
+                                        selection_locked no
+                                    }
+                                }
+                            }
+                            views {
+                                tab {
+                                    editor "WidgetTimeline"
+                                    settings {
+                                        viewport_widget {
+                                            selection_slot "Local"
+                                            use_global yes
+                                            local_selection {
+                                            }
+                                        }
+                                    }
+                                    selection_locked no
+                                }
+                                selected_tab 0
+                                toolbar_minimized yes
+                            }
+                            view {
+                                editor "WidgetTimeline"
+                                settings {
+                                    viewport_widget {
+                                        selection_slot "Local"
+                                        use_global yes
+                                        local_selection {
+                                        }
+                                    }
+                                }
+                                toolbar_minimized yes
+                                selection_locked no
+                            }
+                        }
+                        split_h {
+                            ratio 0.5
+                            views {
+                                tab {
+                                    editor "WidgetAttributeEditor"
+                                    settings {
+                                        viewport_widget {
+                                            selection_slot "Local"
+                                            use_global yes
+                                            local_selection {
+                                            }
+                                        }
+                                        attribute_groups "Scene Object Name" yes "Canvas" yes "Display" yes "Overscan" yes "Sampling" yes "Layers" yes "Output" yes "Kinematics" yes "Advanced Kinematics" yes "Rendering" yes "Lighting" yes "Arbitrary Output Variables" yes "Path Depth" yes "Visibility" yes "Shading" yes "3d View" yes "Utility" yes "Deformation" yes "Displacement" yes "Smoothing" yes "Subdivision Surfaces" yes "Crease Driven Subdivision Surfaces" yes "Geometry" yes "Scattering" yes "Scattering Decimation" yes "Scattering Variation" yes
+                                        attributes_filter ""
+                                        expression_mode yes
+                                        separator 268
+                                    }
+                                    selection_locked no
+                                }
+                                selected_tab 0
+                                toolbar_minimized no
+                            }
+                            view {
+                                editor "WidgetAttributeEditor"
+                                settings {
+                                    viewport_widget {
+                                        selection_slot "Local"
+                                        use_global yes
+                                        local_selection {
+                                        }
+                                    }
+                                    attribute_groups "Scene Object Name" yes "Canvas" yes "Display" yes "Overscan" yes "Sampling" yes "Layers" yes "Output" yes "Kinematics" yes "Advanced Kinematics" yes "Rendering" yes "Lighting" yes "Arbitrary Output Variables" yes "Path Depth" yes "Visibility" yes "Shading" yes "3d View" yes "Utility" yes "Deformation" yes "Displacement" yes "Smoothing" yes "Subdivision Surfaces" yes "Crease Driven Subdivision Surfaces" yes "Geometry" yes "Scattering" yes "Scattering Decimation" yes "Scattering Variation" yes
+                                    attributes_filter ""
+                                    expression_mode yes
+                                    separator 268
+                                }
+                                toolbar_minimized no
+                                selection_locked no
+                            }
+                            split_h {
+                                ratio 0.5
+                                views {
+                                    tab {
+                                        editor "WidgetMaterialLinker"
+                                        settings {
+                                            viewport_widget {
+                                                selection_slot "Local"
+                                                use_global yes
+                                                local_selection {
+                                                }
+                                            }
+                                            filter ""
+                                            hierarchical_display yes
+                                        }
+                                        selection_locked no
+                                        evaluation_mode yes
+                                    }
+                                    selected_tab 0
+                                    toolbar_minimized no
+                                }
+                                view {
+                                    editor "WidgetMaterialLinker"
+                                    settings {
+                                        viewport_widget {
+                                            selection_slot "Local"
+                                            use_global yes
+                                            local_selection {
+                                            }
+                                        }
+                                        filter ""
+                                        hierarchical_display yes
+                                    }
+                                    toolbar_minimized no
+                                    selection_locked no
+                                }
+                                views {
+                                    tab {
+                                        editor "WidgetLayerEditor"
+                                        settings {
+                                            viewport_widget {
+                                                selection_slot "Local"
+                                                use_global yes
+                                                local_selection {
+                                                }
+                                            }
+                                        }
+                                        selection_locked no
+                                    }
+                                    selected_tab 0
+                                    toolbar_minimized no
+                                }
+                                view {
+                                    editor "WidgetLayerEditor"
+                                    settings {
+                                        viewport_widget {
+                                            selection_slot "Local"
+                                            use_global yes
+                                            local_selection {
+                                            }
+                                        }
+                                    }
+                                    toolbar_minimized no
+                                    selection_locked no
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    units {
+        units_file "$CLARISSE_BIN_DIR/units.cfg"
+        time "frame"
+        distance "metric"
+        distance_unit "meter"
+        angle "degree"
+        area "metric"
+        area_unit "square_meter"
+        frequency "frames_per_second"
+        color "float"
+        scale "multiplier"
+    }
+}

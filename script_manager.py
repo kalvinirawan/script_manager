@@ -64,5 +64,3 @@ def os_launch():
 def dcc_launch():
     global main_widget
     main_widget = ScriptManager()
-
-os_launch()

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>840</width>
-    <height>526</height>
+    <width>812</width>
+    <height>405</height>
    </rect>
   </property>
   <property name="font">
@@ -1769,15 +1769,18 @@
       </item>
       <item row="4" column="1">
        <widget class="QComboBox" name="comboBox_4">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
         <property name="palette">
          <palette>
           <active>
            <colorrole role="Button">
             <brush brushstyle="SolidPattern">
              <color alpha="255">
-              <red>28</red>
-              <green>29</green>
-              <blue>44</blue>
+              <red>96</red>
+              <green>101</green>
+              <blue>131</blue>
              </color>
             </brush>
            </colorrole>
@@ -1793,18 +1796,18 @@
            <colorrole role="Base">
             <brush brushstyle="SolidPattern">
              <color alpha="255">
-              <red>28</red>
-              <green>29</green>
-              <blue>44</blue>
+              <red>96</red>
+              <green>101</green>
+              <blue>131</blue>
              </color>
             </brush>
            </colorrole>
            <colorrole role="Window">
             <brush brushstyle="SolidPattern">
              <color alpha="255">
-              <red>28</red>
-              <green>29</green>
-              <blue>44</blue>
+              <red>96</red>
+              <green>101</green>
+              <blue>131</blue>
              </color>
             </brush>
            </colorrole>
@@ -1813,9 +1816,9 @@
            <colorrole role="Button">
             <brush brushstyle="SolidPattern">
              <color alpha="255">
-              <red>28</red>
-              <green>29</green>
-              <blue>44</blue>
+              <red>96</red>
+              <green>101</green>
+              <blue>131</blue>
              </color>
             </brush>
            </colorrole>
@@ -1831,18 +1834,18 @@
            <colorrole role="Base">
             <brush brushstyle="SolidPattern">
              <color alpha="255">
-              <red>28</red>
-              <green>29</green>
-              <blue>44</blue>
+              <red>96</red>
+              <green>101</green>
+              <blue>131</blue>
              </color>
             </brush>
            </colorrole>
            <colorrole role="Window">
             <brush brushstyle="SolidPattern">
              <color alpha="255">
-              <red>28</red>
-              <green>29</green>
-              <blue>44</blue>
+              <red>96</red>
+              <green>101</green>
+              <blue>131</blue>
              </color>
             </brush>
            </colorrole>
@@ -1851,9 +1854,9 @@
            <colorrole role="Button">
             <brush brushstyle="SolidPattern">
              <color alpha="255">
-              <red>28</red>
-              <green>29</green>
-              <blue>44</blue>
+              <red>96</red>
+              <green>101</green>
+              <blue>131</blue>
              </color>
             </brush>
            </colorrole>
@@ -1869,18 +1872,18 @@
            <colorrole role="Base">
             <brush brushstyle="SolidPattern">
              <color alpha="255">
-              <red>28</red>
-              <green>29</green>
-              <blue>44</blue>
+              <red>96</red>
+              <green>101</green>
+              <blue>131</blue>
              </color>
             </brush>
            </colorrole>
            <colorrole role="Window">
             <brush brushstyle="SolidPattern">
              <color alpha="255">
-              <red>28</red>
-              <green>29</green>
-              <blue>44</blue>
+              <red>96</red>
+              <green>101</green>
+              <blue>131</blue>
              </color>
             </brush>
            </colorrole>
@@ -1893,6 +1896,18 @@
           <weight>75</weight>
           <bold>true</bold>
          </font>
+        </property>
+        <property name="acceptDrops">
+         <bool>false</bool>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(96, 101, 131);</string>
+        </property>
+        <property name="editable">
+         <bool>false</bool>
         </property>
         <item>
          <property name="text">
